@@ -20,28 +20,54 @@ const Intern = require('../lib/Intern')
 //     managerEmail: 'fake@email.com',
 //     officeNumber: '12'
 //   }
-function managerCard(data) { 
-    let manager = new Manager(data.TeamManager, data.managerId, data.managerEmail, data.officeNumber)
+
+function managerCard(managerClass) { 
     return `<div class="card bg-light w-25 m-3">
         <div class="card-header bg-primary text-center">
-            <h4>${manager.Name}</h4>
-            <h6 class="card-subtitle mb-2 text-white">${manager.Role}</h6>
+            <h4>${managerClass.Name}</h4>
+            <h6 class="card-subtitle mb-2 text-white">${managerClass.Role}</h6>
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: #${manager.ID}</li>
-                <li class="list-group-item">Email: <a href="mailto:${manager.Email}">${manager.Email}</a></li>
-                <li class="list-group-item">Office Number: ${manager.OfficeNum}</li>
+                <li class="list-group-item">ID#: ${managerClass.ID}</li>
+                <li class="list-group-item">Email: <a href="mailto:${managerClass.Email}">${managerClass.Email}</a></li>
+                <li class="list-group-item">${`Office Number: `+managerClass.OfficeNum}</li>
               </ul>            
         </div>
     </div>`;
 }
 
-function teamCards() {
-
+function engineerCards(...teamArr) {
+    if(teamArr.length != 0){
+        let cards = []
+        let specialPrompt
+   for(let i = 0; i < teamArr.length; i++) {
+    if(teamArr[i]['role'] == '👨🏽‍💻 Engineer') {
+        specialPrompt = `GitHub: <a href="https://github.com/${teamArr[i]['gitHub']}">${teamArr[i]['gitHub']}</a>`
+    } else {
+        specialPrompt = 'School: '+ teamArr[i]['school']
+    };
+    cards.push(`<div class="card bg-light w-25 m-3">
+      <div class="card-header bg-primary text-center">
+          <h4>${teamArr[i]['name']}</h4>
+          <h6 class="card-subtitle mb-2 text-white">${teamArr[i]['role']}</h6>
+      </div>
+      <div class="card-body">
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">ID#: ${teamArr[i]['id']}</li>
+              <li class="list-group-item">Email: <a href="mailto: ${teamArr[i]['email']}">${teamArr[i]['email']}</a></li>
+              <li class="list-group-item">${specialPrompt}</li>
+            </ul>            
+      </div>
+  </div>\n`
+    )}
+    return cards.join(' ')
+} else {
+    return ''
+}
 }
 
-function renderHtml(data) {
+function renderHtml(managerClass, teamArr) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -58,10 +84,12 @@ function renderHtml(data) {
     <body>
         <header class="jumbotron-fluid bg-primary text-center display-3 mb-2">Team</header> 
         <div class="container d-flex flex-wrap justify-content-center">
-            <!--Manager card*vvv*-->       
-            ${managerCard(data)}
+            <!--Manager card*vvv*-->   
+
+            ${managerCard(managerClass)}
             <!--Engineer/intern cards*vvv*-->
 
+            ${engineerCards(...teamArr)}
         </div>
     </body>
     </html>`

@@ -14,22 +14,28 @@ const managerQ = [
     {
         type: 'input',
         name: 'TeamManager',
-        message: 'Who is the Team Manager?'
+        message: 'Who is the Team Manager?',
+        validate: (answer) => answer ? true : console.log('Manager input is needed')
     },
     {
         type: 'input',
         name: 'managerId',
-        message: 'What is the Team Managers ID number?'
+        message: 'What is the Team Managers ID number?',
+        validate: (answer) => answer ? true : console.log('Manager input is needed')
+
     },
     {
         type: 'input',
         name: 'managerEmail',
-        message: 'What is the Team Managers E-mail?'
+        message: 'What is the Team Managers E-mail?',
+        validate: (answer) => answer ? true : console.log('Manager input is needed')
+
     },
     {
         type: 'input',
         name: 'officeNumber',
-        message: 'Enter Team Managers office number'
+        message: 'Enter Team Managers office number',
+        validate: (answer) => answer ? true : console.log('Manager input is needed')
     }
 ];
 
@@ -93,11 +99,11 @@ const internQ = [
 
 function writeFile(answers) {
     fs.writeFile('./dist/index.html', answers, (err) => {
-        err ? console.error(err) : console.log('***Your roster has been generated!***')
+        err ? console.error(err) : console.log('***Your webpage has been generated!***')
     });
 };
 
-
+console.log('\n***Team Profile Generator***')
 prompt(managerQ)
 .then((data) => {
     managerClass = new Manager(data.TeamManager, data.managerId, data.managerEmail, data.officeNumber)

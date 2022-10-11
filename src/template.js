@@ -1,10 +1,4 @@
-//this should create html text and generate html file
-
-// const Employee = require('../lib/Employee')
-// const Manager = require('../lib/Manager')
-// const Engineer = require('../lib/Engineer')
-// const Intern = require('../lib/Intern')
-
+//creates the manager card using the class created on index.js
 function managerCard(managerClass) { 
     return `<div class="card bg-transparent w-25 m-3">
         <div class="card-header bg-primary text-center">
@@ -15,16 +9,17 @@ function managerCard(managerClass) {
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID#: ${managerClass.ID}</li>
                 <li class="list-group-item">Email: <a href="mailto:${managerClass.Email}">${managerClass.Email}</a></li>
-                <li class="list-group-item">${`Office Number: `+managerClass.OfficeNum}</li>
+                <li class="list-group-item">Office Number: ${managerClass.OfficeNum}</li>
               </ul>            
         </div>
     </div>`;
 }
 
+//creates a card for each intern or engineer that is added to the teamArr on index.js
 function teamCards(...teamArr) {
     if(teamArr.length != 0){
-        let cards = []
-        let specialPrompt
+        let cards = [];
+        let specialPrompt;
         for(let i = 0; i < teamArr.length; i++) {
             if(teamArr[i]['role'] == '👨🏽‍💻 Engineer') {
             specialPrompt = `GitHub: <a href="https://github.com/${teamArr[i]['gitHub']}">${teamArr[i]['gitHub']}</a>`
@@ -51,6 +46,7 @@ function teamCards(...teamArr) {
     };
 };
 
+//all information that will be written to webage HTML
 function renderHtml(managerClass, teamArr) {
     return `<!DOCTYPE html>
     <html lang="en">

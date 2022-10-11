@@ -1,5 +1,4 @@
 //This will run application
-//prompt questions and generate template html file
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const fs = require('fs');
@@ -7,8 +6,8 @@ const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const renderHtml = require('./src/template');
-let teamArr = [];
-let managerClass;
+let teamArr = [];//all members are pushed to this array
+let managerClass;//for setting global scope to managerClass
 
 const managerQ = [
     {
@@ -97,12 +96,14 @@ const internQ = [
     }
 ];
 
+//writes the html file to the dist folder
 function writeFile(answers) {
     fs.writeFile('./dist/index.html', answers, (err) => {
         err ? console.error(err) : console.log('***Your webpage has been generated!***')
     });
 };
 
+//starts the application with prompts
 console.log('\n***Team Profile Generator***')
 prompt(managerQ)
 .then((data) => {
@@ -110,6 +111,7 @@ prompt(managerQ)
     init();
     return managerClass;
 })
+//this function starts an event loop for the menu so multiple members can be added
 function init() {
     prompt(menu)
     .then((data) => {

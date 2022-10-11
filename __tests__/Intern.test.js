@@ -11,7 +11,7 @@ describe('Intern', () => {
     describe('Intern position', () => {
         it('should return "Intern"', () => {
             const getty = new Intern()
-            expect(getty.Role).toEqual('Intern')
+            expect(getty.Role).toEqual('📚 Intern')
         })
     })
 });

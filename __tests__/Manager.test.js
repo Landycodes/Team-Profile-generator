@@ -11,7 +11,7 @@ describe('Manager', () => {
     describe('Manager role', () => {
         it('should return "Manager"', () => {
             const sally = new Manager()
-            expect(sally.Role).toEqual('Manager')
+            expect(sally.Role).toEqual('📋 Manager')
         });
     });
 });

@@ -3,12 +3,12 @@
 const inquirer = require('inquirer');
 const prompt = inquirer.createPromptModule();
 const fs = require('fs');
-//const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const renderHtml = require('./src/template');
 let teamArr = [];
+let managerClass;
 
 const managerQ = [
     {
@@ -31,7 +31,7 @@ const managerQ = [
         name: 'officeNumber',
         message: 'Enter Team Managers office number'
     }
-]
+];
 
 const menu = [
     {
@@ -40,7 +40,7 @@ const menu = [
         message: 'Who would you like to bring aboard?',
         choices: ['Engineer', 'Intern', 'I\'m done, make my webpage! ']
     }
-]
+];
 
 const engineerQ = [
     {
@@ -66,7 +66,7 @@ const engineerQ = [
         message: 'Enter Engineer GitHub username'
 
     }
-]
+];
 
 const internQ = [
     {
@@ -89,23 +89,20 @@ const internQ = [
         name: 'intSchool',
         message: 'What school is Intern attending?'
     }
-]
+];
 
 function writeFile(answers) {
-    fs.writeFile('index.html', answers, (err) => {
+    fs.writeFile('./dist/index.html', answers, (err) => {
         err ? console.error(err) : console.log('***Your roster has been generated!***')
-    })
-}
+    });
+};
 
-let managerClass
+
 prompt(managerQ)
 .then((data) => {
     managerClass = new Manager(data.TeamManager, data.managerId, data.managerEmail, data.officeNumber)
-//console.log(managerClass)
-    //teamArr.push(managerClass)
-    init()
-  return managerClass
-  //console.log(managerClass.name) THIS GOES INTO TEMPLATE
+    init();
+    return managerClass;
 })
 function init() {
     prompt(menu)
@@ -116,23 +113,16 @@ function init() {
                 let engineerClass = new Engineer(data.engName, data.engId, data.engEmail, data.engHub)
                 teamArr.push(engineerClass)
                 init()
-            })
+            });
         } else if(data.menu === 'Intern') {
             prompt(internQ)
             .then((data) => {
                 let internClass = new Intern(data.intName, data.intId, data.intEmail, data.intSchool)
                 teamArr.push(internClass)
-            init()
-            })
+                init()
+            });
         } else {
-        writeFile(renderHtml(managerClass, teamArr)) 
-        
-        }
+            writeFile(renderHtml(managerClass, teamArr)) 
+        };
     });
 };
-//init()
-//answers from questions go into there respective class
-//ex team manager = new Manager(answers from question in here)
-//every time i add and intern/engineer generate a new class
-//team manager generates class
-// the classes are what will be put into the template

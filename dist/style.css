@@ -1,0 +1,14 @@
+* {
+    font-family: 'roboto', sans-serif;
+}
+body {
+    background-image: url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzaW5lc3MlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80);
+    background-size: cover;
+}
+.card, .card-header, .card-body {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.list-group-item {
+    box-shadow: -3px 6px 9px;
+    background-color: rgba(255, 255, 255, 0.9);
+}

@@ -27,7 +27,7 @@ describe('Engineer', () => {
     describe('Engineer role', () => {
         it('should return "Engineer"', () => {
             const bob = new Engineer()
-            expect(bob.Role).toEqual('Engineer')
+            expect(bob.Role).toEqual('👨🏽‍💻 Engineer')
         })
     })
 });

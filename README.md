@@ -8,7 +8,7 @@
   ## Installation instructions
  You can install this app by git-cloning the repository. then install the neccesary dependencies such as npm inquirer an version 8.2.4 and npm jest for testing. then open the command line to the file path of the repository and enter "node index" and you will be prompted to fill in information for each member. once you have selected "done" your webpage will be generated in the ./dist folder. you can open that file in your webpage and your team profile will be presented!
   
-  ![img](README-photo/Teamprofilegen-README-screenshot.png)
+  ![img](https://drive.google.com/uc?export=view&id=1l7WI_xnN1NscZWvwBR9RkuR6iJigQzL9)
   #  [Click here for a video demo!](https://drive.google.com/file/d/1EQanXXD0_u6vN9iG5IqBlUsujV3fMUw4/view)
 
   
